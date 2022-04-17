@@ -1,0 +1,49 @@
+El documento contiene el siguiente lenguaje:
+
+	L = {0xFF,127,0xa0,0159,abc,0xaBb1,0Xx,1x0,0,20,0x,00,010,09,01x0,127A,120,1,1000,00001,999,9}
+
+Las cadenas del Lenguaje "L" son del siguiente Tipo:
+
+	- 0xFF			[Hexadecimal]
+
+	- 127			[Decimal]
+
+	- 0xa0			[Hexadecimal]
+
+	- 0159			[No Registrado]
+
+	- abc			[No Registrado]
+
+	- 0xaBb1			[Hexadecimal]
+
+	- 0Xx			[No Registrado]
+
+	- 1x0			[No Registrado]
+
+	- 0			[Octal]
+
+	- 20			[Decimal]
+
+	- 0x			[No Registrado]
+
+	- 00			[Octal]
+
+	- 010			[Octal]
+
+	- 09			[No Registrado]
+
+	- 01x0			[No Registrado]
+
+	- 127A			[No Registrado]
+
+	- 120			[Decimal]
+
+	- 1			[Decimal]
+
+	- 1000			[Decimal]
+
+	- 00001			[Octal]
+
+	- 999			[Decimal]
+
+	- 9			[Decimal]
