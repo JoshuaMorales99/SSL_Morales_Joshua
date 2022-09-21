@@ -18,19 +18,28 @@
     char * cadena;
 }
 
-%token <ival> CONSTANTE_OCTAL CONSTANTE_DECIMAL CONSTANTE_HEXADECIMAL CONSTANTE_REAL 
+%token <ival> CONSTANTE CONSTANTE_OCTAL CONSTANTE_DECIMAL CONSTANTE_HEXADECIMAL CONSTANTE_REAL 
 %token <cval> CONSTANTE_CARACTER
 
 %type <ival> num
+%type <cval> caracter
 
-%start num
+%start constantes
 
 %%
 
-num:      CONSTANTE_OCTAL               {printf("Octal");}
-        |  CONSTANTE_DECIMAL            {printf("Decimal");}
-        |  CONSTANTE_HEXADECIMAL        {printf("Hexadecimal");}
-        |  CONSTANTE_REAL               {printf("Real");}
+constantes:   num
+            | caracter
+;
+
+num:          CONSTANTE                     {printf("Constante\n");}
+            | CONSTANTE_OCTAL               {printf("Octal\n");}
+            | CONSTANTE_DECIMAL             {printf("Decimal\n");}
+            | CONSTANTE_HEXADECIMAL         {printf("Hexadecimal\n");}
+            | CONSTANTE_REAL                {printf("Real\n");}
+;
+
+caracter:     CONSTANTE_CARACTER            {printf("Caracter\n");}
 ;
 
 %%
@@ -44,8 +53,7 @@ int main(){
         yydebug = 1;
     #endif
 
-    printf("Ingrese una constante entera: ");
-    yyparse();
-
-return 0;
+    printf("> ");
+    
+return yyparse();
 }

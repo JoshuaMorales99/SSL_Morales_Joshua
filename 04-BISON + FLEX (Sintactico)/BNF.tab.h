@@ -39,11 +39,12 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     CONSTANTE_OCTAL = 258,
-     CONSTANTE_DECIMAL = 259,
-     CONSTANTE_HEXADECIMAL = 260,
-     CONSTANTE_REAL = 261,
-     CONSTANTE_CARACTER = 262
+     CONSTANTE = 258,
+     CONSTANTE_OCTAL = 259,
+     CONSTANTE_DECIMAL = 260,
+     CONSTANTE_HEXADECIMAL = 261,
+     CONSTANTE_REAL = 262,
+     CONSTANTE_CARACTER = 263
    };
 #endif
 
@@ -63,7 +64,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 67 "BNF.tab.h"
+#line 68 "BNF.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
