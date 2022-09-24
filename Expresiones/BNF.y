@@ -98,7 +98,7 @@ expMultiplicativa:        expUnaria
 expUnaria:                expSufijo
                         | MASMAS expUnaria
                         | MENOSMENOS expUnaria
-                        | operUnario expConversion
+                        | operUnario expUnaria
                         | SIZEOF '(' nombreTipo ')'
                         | SIZEOF expUnaria
 ;
