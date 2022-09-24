@@ -809,377 +809,377 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 24 "lexico.l"
-{return '{';};
+{return '{';}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 25 "lexico.l"
-{return '}';};
+{return '}';}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 26 "lexico.l"
-{return '=';};
+{return '=';}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 27 "lexico.l"
-{return '<';};
+{return '<';}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 28 "lexico.l"
-{return '>';};
+{return '>';}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 29 "lexico.l"
-{return '+';};
+{return '+';}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 30 "lexico.l"
-{return '-';};
+{return '-';}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 31 "lexico.l"
-{return '*';};
+{return '*';}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 32 "lexico.l"
-{return '/';};
+{return '/';}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 33 "lexico.l"
-{return '%';};
+{return '%';}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 34 "lexico.l"
-{return ';';};
+{return ';';}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 35 "lexico.l"
-{return ':';};
+{return ':';}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 36 "lexico.l"
-{return '(';};
+{return '(';}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 37 "lexico.l"
-{return ')';};
+{return ')';}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 38 "lexico.l"
-{return ',';};
+{return ',';}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 39 "lexico.l"
-{return '.';};
+{return '.';}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 40 "lexico.l"
-{return '?';};
+{return '?';}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 41 "lexico.l"
-{return '!';};
+{return '!';}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 42 "lexico.l"
-{return '[';};
+{return '[';}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 43 "lexico.l"
-{return ']';};
+{return ']';}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 44 "lexico.l"
-{return '&';};
+{return '&';}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 46 "lexico.l"
-{return OR;};
+{return OR;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 47 "lexico.l"
-{return AND;};
+{return AND;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 48 "lexico.l"
-{return IGUALIGUAL;};
+{return IGUALIGUAL;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 49 "lexico.l"
-{return MAYORIGUAL;};
+{return MAYORIGUAL;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 50 "lexico.l"
-{return MENORIGUAL;};
+{return MENORIGUAL;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 51 "lexico.l"
-{return DIFERENTE;};
+{return DIFERENTE;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 52 "lexico.l"
-{return MASIGUAL;};
+{return MASIGUAL;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 53 "lexico.l"
-{return MENOSIGUAL;};
+{return MENOSIGUAL;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 54 "lexico.l"
-{return PORIGUAL;};
+{return PORIGUAL;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 55 "lexico.l"
-{return DIVISIONGUAL;};
+{return DIVISIONGUAL;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 56 "lexico.l"
-{return MASMAS;};
+{return MASMAS;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 57 "lexico.l"
-{return MENOSMENOS;};
+{return MENOSMENOS;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 58 "lexico.l"
-{return FLECHA;};
+{return FLECHA;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 60 "lexico.l"
-{return AUTO;};
+{return AUTO;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 61 "lexico.l"
-{return ENUM;};
+{return ENUM;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 62 "lexico.l"
-{return REGISTER;};
+{return REGISTER;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 63 "lexico.l"
-{return TYPEDEF;};
+{return TYPEDEF;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 64 "lexico.l"
-{return EXTERN;};
+{return EXTERN;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 65 "lexico.l"
-{return SIZEOF;};
+{return SIZEOF;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 66 "lexico.l"
-{return UNION;};
+{return UNION;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 67 "lexico.l"
-{return GOTO;};
+{return GOTO;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 68 "lexico.l"
-{return VOLATILE;};
+{return VOLATILE;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 70 "lexico.l"
-{return WHILE;};
+{return WHILE;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 71 "lexico.l"
-{return IF;};
+{return IF;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 72 "lexico.l"
-{return ELSE;};
+{return ELSE;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 73 "lexico.l"
-{return DO;};
+{return DO;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 74 "lexico.l"
-{return SWITCH;};
+{return SWITCH;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 #line 75 "lexico.l"
-{return FOR;};
+{return FOR;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 #line 76 "lexico.l"
-{return CASE;};
+{return CASE;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 #line 77 "lexico.l"
-{return BREAK;};
+{return BREAK;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 #line 78 "lexico.l"
-{return DEFAULT;};
+{return DEFAULT;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
 #line 79 "lexico.l"
-{return VOID;};
+{return VOID;}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 80 "lexico.l"
-{return CONTINUE;};
+{return CONTINUE;}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 81 "lexico.l"
-{return RETURN;};
+{return RETURN;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 83 "lexico.l"
-{return CHAR;};
+{return CHAR;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 84 "lexico.l"
-{return DOUBLE;};
+{return DOUBLE;}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
 #line 85 "lexico.l"
-{return FLOAT;};
+{return FLOAT;}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
 #line 86 "lexico.l"
-{return INT;};
+{return INT;}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
 #line 87 "lexico.l"
-{return LONG;};
+{return LONG;}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
 #line 88 "lexico.l"
-{return SHORT;};
+{return SHORT;}
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
 #line 89 "lexico.l"
-{return UNSIGNED;};
+{return UNSIGNED;}
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
 #line 90 "lexico.l"
-{return SIGNED;};
+{return SIGNED;}
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
 #line 91 "lexico.l"
-{return CONST;};
+{return CONST;}
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
 #line 92 "lexico.l"
-{return STATIC;};
+{return STATIC;}
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
 #line 93 "lexico.l"
-{return STRUCT;};
+{return STRUCT;}
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
 #line 95 "lexico.l"
-{return CONSTANTE_OCTAL;};
+{return CONSTANTE_OCTAL;}
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
 #line 96 "lexico.l"
-{return CONSTANTE_DECIMAL;};
+{return CONSTANTE_DECIMAL;}
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
 #line 97 "lexico.l"
-{return CONSTANTE_HEXADECIMAL;};
+{return CONSTANTE_HEXADECIMAL;}
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
 #line 98 "lexico.l"
-{return CONSTANTE_REAL;};
+{return CONSTANTE_REAL;}
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
 #line 99 "lexico.l"
-{return CONSTANTE_CARACTER;};
+{return CONSTANTE_CARACTER;}
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
 #line 100 "lexico.l"
-{return LITERAL_CADENA;};
+{return LITERAL_CADENA;}
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
 #line 101 "lexico.l"
-{yylval.cadena=yytext; return IDENTIFICADOR;};
+{yylval.cadena=yytext; return IDENTIFICADOR;}
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
 #line 102 "lexico.l"
-{return COMENTARIO_UNA_LINEA;};
+{return COMENTARIO_UNA_LINEA;}
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
 #line 103 "lexico.l"
-{return COMENTARIO_VARIAS_LINEAS;};
+{return COMENTARIO_VARIAS_LINEAS;}
 	YY_BREAK
 case 76:
 YY_RULE_SETUP

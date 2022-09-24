@@ -16,22 +16,34 @@
 %union{
     int ival;
     float fval;
-    char cval;
     char * cadena;
 }
 
 %token CONSTANTE_OCTAL CONSTANTE_DECIMAL CONSTANTE_HEXADECIMAL
 %token CONSTANTE_REAL 
 %token CONSTANTE_CARACTER
+%token OR AND
+%token IGUALIGUAL DIFERENTE
+%token MAYORIGUAL MENORIGUAL
+%token MASIGUAL MENOSIGUAL PORIGUAL DIVISIONGUAL
+%token MASMAS MENOSMENOS
+%token FLECHA
+%token AUTO TYPEDEF STATIC REGISTER EXTERN ENUM
+%token SIZEOF
+%token UNION STRUCT
+%token GOTO RETURN CONTINUE BREAK
+%token VOLATILE CONST
+%token WHILE DO FOR
+%token IF ELSE SWITCH CASE DEFAULT
+%token VOID
+%token CHAR DOUBLE FLOAT INT LONG SHORT SIGNED UNSIGNED
+%token IDENTIFICADOR
+%token LITERAL_CADENA
+%token COMENTARIO_UNA_LINEA COMENTARIO_VARIAS_LINEAS
 
-%start programaC
+%start sentencia
 
 %%
-
-programaC:                noC
-                        | listaSentencias
-                        | listaDeclaraciones
-;
 
 noC:                      COMENTARIO_UNA_LINEA
                         | COMENTARIO_VARIAS_LINEAS
@@ -41,12 +53,14 @@ expresion:                expAsignacion
 ;
 
 expAsignacion:            expCondicional
-                        | IDENTIFICADOR operAsignacion expAsignacion
+                        | expUnaria operAsignacion expAsignacion
 ;
 
 operAsignacion:           '='
-                        | ASIGNACIONSUMA
-                        | ASIGNACIONMULTIPLICACION
+                        | MASIGUAL
+                        | MENOSIGUAL
+                        | PORIGUAL
+                        | DIVISIONGUAL
 ;
 
 expCondicional:           expOr
@@ -62,8 +76,8 @@ expAnd:                   expIgualdad
 ;
 
 expIgualdad:              expRelacional
-                        | expRelacional IGUALDAD expIgualdad
-                        | expRelacional DESIGUALDAD expIgualdad
+                        | expRelacional IGUALIGUAL expIgualdad
+                        | expRelacional DIFERENTE expIgualdad
 ;
 
 expRelacional:            expAditiva
@@ -74,22 +88,21 @@ expRelacional:            expAditiva
 ;
 
 expAditiva:               expMultiplicativa
-                        | expMultiplicativa '+' expAditiva
+                        | expMultiplicativa '+' expAditiva                                  {printf("Suma");}
                         | expMultiplicativa '-' expAditiva
 ;
 
 expMultiplicativa:        expUnaria
                         | expUnaria '*' expMultiplicativa
                         | expUnaria '/' expMultiplicativa
-                        | expUnaria '^' expMultiplicativa
                         | expUnaria '%' expMultiplicativa
 ;
 
 expUnaria:                expSufijo
-                        | INCREMENTO expUnaria
-                        | DECREMENTO expUnaria
+                        | MASMAS expUnaria
+                        | MENOSMENOS expUnaria
                         | operUnario expUnaria
-                        | SIZEOF '(' tipoDato ')'
+                        | SIZEOF '(' espTipo ')'
                         | SIZEOF expUnaria
 ;
 
@@ -106,8 +119,8 @@ expSufijo:                expPrimaria
                         | expSufijo '(' ')'
                         | expSufijo '.' IDENTIFICADOR
                         | expSufijo FLECHA IDENTIFICADOR
-                        | expSufijo INCREMENTO
-                        | expSufijo DECREMENTO
+                        | expSufijo MASMAS
+                        | expSufijo MENOSMENOS
 ;
 
 listaArgumentos:          expAsignacion
@@ -125,6 +138,7 @@ sentencia:                sentCompuesta
                         | sentSeleccion
                         | sentIteracion
                         | sentSalto
+                        | noC
 ;
 
 sentCompuesta:            '{' listaDeclaraciones listaSentencias '}'
@@ -137,65 +151,127 @@ listaDeclaraciones:       declaracion
                         | declaracion listaDeclaraciones
 ;
 
-declaracion:              tipoDato listaVariableSimple ';'
+declaracion:              espDeclaracion listaDeclaradores
+                        | espDeclaracion
 ;
 
-tipoDato:                 CHAR
-                        | DOUBLE
-                        | FLOAT
+espDeclaracion:           espAlmacenamiento espDeclaracion
+                        | espAlmacenamiento
+                        | espTipo espDeclaracion
+                        | espTipo
+                        | calificadorTipo espDeclaracion
+                        | calificadorTipo
+;
+
+listaDeclaradores:        declarador
+                        | declarador ',' listaDeclaradores
+;
+
+declarador:               decla
+                        | decla expAsignacion
+;
+
+espAlmacenamiento:        TYPEDEF
+                        | STATIC
+                        | AUTO
+                        | REGISTER
+                        | EXTERN
+;
+
+espTipo:                  VOID
+                        | CHAR
+                        | SHORT
                         | INT
                         | LONG
-                        | SHORT
+                        | FLOAT
+                        | DOUBLE
+                        | SIGNED
+                        | UNSIGNED
+                        | espStructUnion
+                        | IDENTIFICADOR
 ;
 
-listaVariableSimple:      unaVariable
-                        | unaVariable ',' listaVariableSimple
+calificadorTipo:          CONST
+                        | VOLATILE
 ;
 
-unaVariable:              variable
-                        | variable inicial
+espStructUnion:           structUnion IDENTIFICADOR '{' listaStruct '}'
+                        | structUnion '{' listaStruct '}'
+                        | structUnion IDENTIFICADOR
 ;
 
-variable:               IDENTIFICADOR
+structUnion:              STRUCT
+                        | UNION
 ;
 
-inicial:                '=' constantes
+listaStruct:              declaracionStruct
+                        | declaracionStruct listaStruct
 ;
 
-listaSentencias:          sentencia
-                        | sentencia listaSentencias
+declaracionStruct:        listaCalificadores declaradoresStruct ';'
+;
+
+listaCalificadores:       espTipo listaCalificadores
+                        | espTipo
+                        | calificadorTipo listaCalificadores
+                        | calificadorTipo
+;
+
+declaradoresStruct:       decla
+                        | declaradoresStruct ',' decla
+;
+
+decla:                    puntero declaradorDirecto
+                        | declaradorDirecto
+;
+
+puntero:                  '*' listaCalificadoresTipo
+                        | '*'
+                        | '*' listaCalificadoresTipo puntero
+                        | '*' puntero
+;
+
+listaCalificadoresTipo:   calificadorTipo
+                        | calificadorTipo listaCalificadoresTipo
+;
+
+declaradorDirecto:        IDENTIFICADOR
+                        | '(' decla ')'
+                        | declaradorDirecto '[' constante ']'
+                        | declaradorDirecto '[' ']'
+;
+
+listaSentencias:          listaSentencias sentencia
+                        | sentencia
 ;
 
 sentExpresion:            expresion ';'
                         | ';'
 ;
 
-sentSeleccion:            IF '(' expresion ')' sentencia
-                        | IF '(' expresion ')' sentencia ELSE sentencia
+sentSeleccion:            IF '(' expresion ')' sentencia ELSE sentencia                     {printf("if con else");}
+                        | IF '(' expresion ')' sentencia                                    {printf("if sin else");}
                         | SWITCH '(' expresion ')' sentSwitch
 ;
 
-sentSwitch:               '{' sentCase sentDefault '}'
-	                    | '{' sentCase '}'
-	                    | '{' sentDefault '}'
+sentSwitch:               '{' CASE constante ':' sentencia DEFAULT ':' sentencia '}'
+	                    | '{' CASE constante ':' sentencia '}'
+	                    | '{' DEFAULT ':' sentencia '}'
 	                    | '{' '}'
-;
-
-sentCase:                 CASE constante ':' sentencia
-;
-
-sentDefault:              DEFAULT ':' sentencia
 ;
 
 sentIteracion:            WHILE '(' expresion ')' sentencia
                         | DO sentencia WHILE '(' expresion ')' ';'
-                        | FOR '(' expresion ';' expresion ';' expresion ')' sentencia
-                        | FOR '(' ';' expresion ';' expresion ')' sentencia
-                        | FOR '(' expresion ';' ';' expresion ')' sentencia
-                        | FOR '(' expresion ';' expresion ';' ')' sentencia
-                        | FOR '(' ';' ';' expresion ')' sentencia
-                        | FOR '(' expresion ';' ';' ')' sentencia
-                        | FOR '(' ';' ';' ';' ')' sentencia
+                        | FOR '(' cuerpoFor ')' sentencia
+;
+
+cuerpoFor:                expresion ';' expresion ';' expresion
+                        | ';' expresion ';' expresion
+                        | expresion ';' ';' expresion
+                        | expresion ';' expresion ';'
+                        | ';' ';' expresion
+                        | expresion ';' ';'
+                        | ';' ';' ';'
 ;
 
 sentSalto:                BREAK ';'
@@ -206,13 +282,13 @@ sentSalto:                BREAK ';'
 ;
 
 constante:                constanteEntera
-                        | CONSTANTE_CARACTER            {printf("Caracter\n");}
-                        | CONSTANTE_REAL                {printf("Real\n");}
+                        | CONSTANTE_CARACTER                                                {printf("Caracter\n");}
+                        | CONSTANTE_REAL                                                    {printf("Real\n");}
 ;
 
-constanteEntera:          CONSTANTE_OCTAL               {printf("Octal\n");}
-                        | CONSTANTE_DECIMAL             {printf("Decimal\n");}
-                        | CONSTANTE_HEXADECIMAL         {printf("Hexadecimal\n");}
+constanteEntera:          CONSTANTE_OCTAL                                                   {printf("Octal\n");}
+                        | CONSTANTE_DECIMAL                                                 {printf("Decimal\n");}
+                        | CONSTANTE_HEXADECIMAL                                             {printf("Hexadecimal\n");}
 ;
 
 %%
