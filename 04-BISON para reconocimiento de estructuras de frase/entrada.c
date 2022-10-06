@@ -1,5 +1,4 @@
 return;
-return;
 break;
 continue;
 return a;
@@ -27,7 +26,7 @@ if (1 < 3){
     // Hola
     printf("T_T");
 }
-for (int p = 0; p < 2; p++){
+for (int i = 0; i < 2; i++){
     int a = 3;
     return;
 }
@@ -77,4 +76,27 @@ enum a{
 
 int Jelou() {
     printf("watafak");
+}
+int a;
+int b = 4,c;
+
+signed int d;
+unsigned int e;
+signed f;
+unsigned g;
+
+struct ejemplo { char h; int i;};
+
+enum valor {j, k};
+
+const int l;
+
+typedef struct typeStruct{ 
+    int m;
+} myStruct;
+
+volatile unsigned char n;
+
+int pruebaSigno(unsigned char o){
+    return 3;
 }
