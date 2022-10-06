@@ -103,16 +103,17 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 16 "BNF.y"
+#line 52 "parser.y"
 
-    int ival;
-    float fval;
-    char * cadena;
+  struct {
+    char* cadena;
+    int entero;
+  } myStruct;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 116 "BNF.tab.h"
+#line 117 "parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
