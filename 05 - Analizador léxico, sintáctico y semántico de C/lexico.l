@@ -19,49 +19,51 @@ CONSTANTE_OCTAL                 0[0-7]*
 CONSTANTE_HEXADECIMAL           0[xX][0-9A-Fa-f]+
 CONSTANTE_REAL                  [0-9]*\.[0-9]+([eE][\+\-]?[0-9]+)?|[0-9]+\.([eE][\+\-]?[0-9]+)?|[0-9]([eE][\+\-]?[0-9]+)?
 CONSTANTE_CARACTER              '.'
-LITERAL_CADENA                  \".*\"
+LITERAL_CADENA                  L?\"{s_char}*\"
+s_char                          [^\"\\\n]|{escape_simple} 
+escape_simple                   \\[abfnrtv\'\"\?\\]
 IDENTIFICADOR                   [_a-zA-Z][_a-zA-Z0-9]*
 COMENTARIO_UNA_LINEA            \/\/.*
-COMENTARIO_VARIAS_LINEAS        \/\*[^\*\/]*\*\/
+COMENTARIO_VARIAS_LINEAS        \/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\/
 
 /* =====================    R E G L A S    ===================== */
 
 %%
 "{"                                     {yylval.myStruct.entero = yylineno; return '{';}
 "}"                                     {yylval.myStruct.entero = yylineno; return '}';}
-"="                                     {return '=';}
-"<"                                     {return '<';}
-">"                                     {return '>';}
-"+"                                     {return '+';}
-"-"                                     {return '-';}
-"*"                                     {return '*';}
-"/"                                     {return '/';}
-"%"                                     {return '%';}
+"="                                     {yylval.myStruct.entero = yylineno; return '=';}
+"<"                                     {yylval.myStruct.entero = yylineno; return '<';}
+">"                                     {yylval.myStruct.entero = yylineno; return '>';}
+"+"                                     {yylval.myStruct.entero = yylineno; return '+';}
+"-"                                     {yylval.myStruct.entero = yylineno; return '-';}
+"*"                                     {yylval.myStruct.entero = yylineno; return '*';}
+"/"                                     {yylval.myStruct.entero = yylineno; return '/';}
+"%"                                     {yylval.myStruct.entero = yylineno; return '%';}
 ";"                                     {yylval.myStruct.entero = yylineno; return ';';}
 ":"                                     {yylval.myStruct.entero = yylineno; return ':';}
-"("                                     {return '(';}
-")"                                     {return ')';}
-","                                     {return ',';}
-"."                                     {return '.';}
-"?"                                     {return '?';}
-"!"                                     {return '!';}
-"["                                     {return '[';}
-"]"                                     {return ']';}
-"&"                                     {return '&';}
+"("                                     {yylval.myStruct.entero = yylineno; return '(';}
+")"                                     {yylval.myStruct.entero = yylineno; return ')';}
+","                                     {yylval.myStruct.entero = yylineno; return ',';}
+"."                                     {yylval.myStruct.entero = yylineno; return '.';}
+"?"                                     {yylval.myStruct.entero = yylineno; return '?';}
+"!"                                     {yylval.myStruct.entero = yylineno; return '!';}
+"["                                     {yylval.myStruct.entero = yylineno; return '[';}
+"]"                                     {yylval.myStruct.entero = yylineno; return ']';}
+"&"                                     {yylval.myStruct.entero = yylineno; return '&';}
 
-"=="                                    {return IGUALIGUAL;}
-"!="                                    {return DIFERENTE;}
-"+="                                    {return MASIGUAL;}
-"-="                                    {return MENOSIGUAL;}
-"*="                                    {return PORIGUAL;}
-"/="                                    {return DIVISIONGUAL;}
-"<="                                    {return MENORIGUAL;}
-">="                                    {return MAYORIGUAL;}
-"++"                                    {return MASMAS;}
-"--"                                    {return MENOSMENOS;}
-"&&"                                    {return AND;}
-"||"                                    {return OR;}
-"->"                                    {return FLECHA;}
+"=="                                    {yylval.myStruct.entero = yylineno; return IGUALIGUAL;}
+"!="                                    {yylval.myStruct.entero = yylineno; return DIFERENTE;}
+"+="                                    {yylval.myStruct.entero = yylineno; return MASIGUAL;}
+"-="                                    {yylval.myStruct.entero = yylineno; return MENOSIGUAL;}
+"*="                                    {yylval.myStruct.entero = yylineno; return PORIGUAL;}
+"/="                                    {yylval.myStruct.entero = yylineno; return DIVISIONGUAL;}
+"<="                                    {yylval.myStruct.entero = yylineno; return MENORIGUAL;}
+">="                                    {yylval.myStruct.entero = yylineno; return MAYORIGUAL;}
+"++"                                    {yylval.myStruct.entero = yylineno; return MASMAS;}
+"--"                                    {yylval.myStruct.entero = yylineno; return MENOSMENOS;}
+"&&"                                    {yylval.myStruct.entero = yylineno; return AND;}
+"||"                                    {yylval.myStruct.entero = yylineno; return OR;}
+"->"                                    {yylval.myStruct.entero = yylineno; return FLECHA;}
 
 "\n"                                    {yylval.myStruct.entero = yylineno;}
 "\t"
@@ -80,7 +82,7 @@ const                                   {yylval.myStruct.cadena = strdup(yytext)
 static                                  {yylval.myStruct.cadena = strdup(yytext); return STATIC;}
 struct                                  {yylval.myStruct.cadena = strdup(yytext); return STRUCT;}
 void                                    {yylval.myStruct.cadena = strdup(yytext); return VOID;}
-volatile                                {yylval.myStruct.cadena = strdup(yytext);return VOLATILE;}
+volatile                                {yylval.myStruct.cadena = strdup(yytext); return VOLATILE;}
 union                                   {yylval.myStruct.cadena = strdup(yytext); return UNION;}
 enum                                    {yylval.myStruct.cadena = strdup(yytext); return ENUM;}
 
@@ -116,7 +118,7 @@ sizeof                                  {return SIZEOF;}
 {COMENTARIO_UNA_LINEA}                  {return COMENTARIO_UNA_LINEA;}
 {COMENTARIO_VARIAS_LINEAS}              {return COMENTARIO_VARIAS_LINEAS;}
 
-.                                       {printf("Error lexico: Caracter no valido %s en linea %d\n", yytext, yylineno);}
+.                                       {printf(" Error lexico en linea %d: Caracter no valido %s\n", yylineno, yytext);}
 
 
 %%

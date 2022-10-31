@@ -103,10 +103,10 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 54 "parser.y"
+#line 59 "parser.y"
 
   struct {
-    char* cadena;
+    char * cadena;
     int entero;
     int esNumerico;
   } myStruct;
